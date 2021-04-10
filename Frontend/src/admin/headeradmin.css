@@ -1,0 +1,14 @@
+.header_admin{
+    height: 120px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color:#1a2638;
+    position: sticky;
+    justify-content: center;
+    top: 0;
+    z-index: 100;
+}
+.text_align{
+    color:white;
+}
