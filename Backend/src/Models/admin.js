@@ -35,36 +35,37 @@ const AdminSchema = new mongoose.Schema({
 
         }
     },
-        age: {
-            type: Number,
-            required: true,
-            validate(value) {
-                if (value < 0 || value >100) {
-                    throw new Error("Age cannot be Negative or greater than 100 please enter Correct Age")
-                }
-            }},
-            phone: {
-                type: Number,
-                unique: true,
-                required: true,
-               
-                validate(value) {
-                    if (value.toString().length != 10) {
-                        throw new Error("Please Enter Correct Mobile Number")
-                    }
-                }
-            },address:{
-                type:String,
-                required:true,   
-            },
-            tokens: [{
-                token: {
-                    type: String,
-                    required: true
-                }
-            }]
-        
+    age: {
+        type: Number,
+        required: true,
+        validate(value) {
+            if (value < 0 || value > 100) {
+                throw new Error("Age cannot be Negative or greater than 100 please enter Correct Age")
+            }
+        }
     },
+    phone: {
+        type: Number,
+        
+        required: true,
+        unique: true,
+        validate(value) {
+            if (value.toString().length != 10) {
+                throw new Error("Please Enter Correct Mobile Number")
+            }
+        }
+    }, address: {
+        type: String,
+        required: true,
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
+
+},
     {
         timestamps: true
 
@@ -74,7 +75,7 @@ AdminSchema.methods.generateAuthToken = async function () {
     try {
         const admin = this
         const token = await jwt.sign({ _id: admin._id.toString() }, "secretkey")
-        admin.tokens = admin.tokens.concat({token })
+        admin.tokens = admin.tokens.concat({ token })
         await admin.save()
         return token
     } catch (e) {
@@ -96,18 +97,6 @@ AdminSchema.statics.findByCredentials = async (email, password) => {
         console.log(e)
     }
 }
-// userSchema.statics.changePassword = async (email, password) => {
-//     try {
-//         const user = await User.findOne({ email })
-//         if (!user) {
-//             throw new Error('Wrong Email ')
-//         }
-//        const newpass= await bcrypt.update(user.password,password)
-//         return user,newpass
-//     } catch (e) {
-//         console.log(e)
-//     }
-// }
 AdminSchema.pre('save', async function (next) {
     const admin = this
     if (admin.isModified('password')) {
@@ -116,8 +105,6 @@ AdminSchema.pre('save', async function (next) {
     }
     next()
 })
-
-
 
 const Admin = mongoose.model('Admin', AdminSchema)
 module.exports = Admin

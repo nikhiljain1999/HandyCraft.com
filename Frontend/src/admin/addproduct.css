@@ -20,7 +20,8 @@
 }
 .addproduct_container{
     width: 700px;
-    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-top: 10px;
     height: fit-content;
     display: flex;
     
@@ -40,5 +41,8 @@
     border:1px solid;
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
+ }
+ .divstyle{
+     margin-top: 20px;
  }
 

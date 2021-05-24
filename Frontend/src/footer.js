@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     root: {
         marginTop:"20px",
         minWidth: '100%',
-        backgroundColor: '#1a2638'
+        backgroundColor: '#279698'
     },
     bullet: {
         display: 'inline-block',

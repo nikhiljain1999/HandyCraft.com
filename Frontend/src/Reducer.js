@@ -3,11 +3,27 @@ export const initialState={
     basket:[]
 }
 
-//selector
 export const getBasketTotal=(basket)=>basket?.reduce((
-    amount,item)=>item.price+amount,0)
+    amount,item)=>item.price*item.quantity+amount,0)
 const reducer=(state,action)=>{
     switch(action.type){
+        case "UPDATE_QUANTITY":
+            console.log(action.quantity)
+            let updatedBasket=[...state.basket];
+            updatedBasket=updatedBasket.map(item=> {
+                if(item.id===action.id){
+                    return {
+                        ...item,
+                        quantity: item.quantity+action.quantity
+                    }
+                }
+                return item;
+            })
+            
+            return {
+                ...state,
+                basket: updatedBasket
+            };
         case "ADD_TO_CART":
             return{
                 ...state,

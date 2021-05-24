@@ -1,0 +1,31 @@
+<svg id="Gurgaon_icon" data-name="Gurgaon icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83.555" height="83.555" viewBox="0 0 83.555 83.555">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1.003" x2="0.5" y2="1.963" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#eaf7ff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_72" data-name="Ellipse 72" cx="41.777" cy="41.777" r="41.777"/>
+    </clipPath>
+  </defs>
+  <circle id="Ellipse_70" data-name="Ellipse 70" cx="41.777" cy="41.777" r="41.777" fill="url(#linear-gradient)"/>
+  <g id="Group_398" data-name="Group 398">
+    <g id="Group_392" data-name="Group 392" clip-path="url(#clip-path)">
+      <circle id="Ellipse_71" data-name="Ellipse 71" cx="41.777" cy="41.777" r="41.777" fill="#fdf9f0"/>
+    </g>
+    <g id="Group_393" data-name="Group 393" clip-path="url(#clip-path)">
+      <path id="Path_703" data-name="Path 703" d="M38.8,94.776V82s.716-4.058,2.149-4.655c1.552-.6,22.918-21.6,53.952-15.995,0,0,2.387,4.416-2.029,7.042,0,0,3.7,2.149.6,5.849,0,0,3.342,3.1,0,4.655L75.922,87.972Z" transform="translate(-24.834 -21.964)" fill="#f68c59"/>
+    </g>
+    <g id="Group_396" data-name="Group 396" clip-path="url(#clip-path)">
+      <g id="Group_394" data-name="Group 394" transform="translate(13.966 56.864)">
+        <path id="Path_704" data-name="Path 704" d="M43.8,96.787C62.063,86.522,78.177,80.076,98.588,80.912v18.5c-7.4,6.446-29.722,19.456-54.788-.955V96.787Z" transform="translate(-43.8 -80.839)" fill="#a69182"/>
+      </g>
+      <g id="Group_395" data-name="Group 395" transform="translate(15.517 36.418)">
+        <path id="Path_705" data-name="Path 705" d="M45.1,83.512c3.82-4.536,13.727-14.92,29.841-18.5a53.384,53.384,0,0,1,16.83-1.074,1.385,1.385,0,0,1,.716,1.194,1.5,1.5,0,0,1-.716,1.313H89.026A76.767,76.767,0,0,0,68.5,69.786,68.277,68.277,0,0,0,45.1,83.512Z" transform="translate(-45.1 -63.71)" fill="#a69182" fill-rule="evenodd"/>
+      </g>
+    </g>
+    <g id="Group_397" data-name="Group 397" clip-path="url(#clip-path)">
+      <path id="Path_706" data-name="Path 706" d="M86.3,63.126H82V50.354A2.519,2.519,0,0,1,84.507,48.8a2.182,2.182,0,0,1,1.79,1.552Z" transform="translate(-16.469 -24.214)" fill="#a69182"/>
+    </g>
+  </g>
+</svg>

@@ -93,18 +93,6 @@ userSchema.statics.findByCredentials = async (email, password) => {
         console.log(e)
     }
 }
-// userSchema.statics.changePassword = async (email, password) => {
-//     try {
-//         const user = await User.findOne({ email })
-//         if (!user) {
-//             throw new Error('Wrong Email ')
-//         }
-//        const newpass= await bcrypt.update(user.password,password)
-//         return user,newpass
-//     } catch (e) {
-//         console.log(e)
-//     }
-// }
 userSchema.pre('save', async function (next) {
     const user = this
     if (user.isModified('password')) {

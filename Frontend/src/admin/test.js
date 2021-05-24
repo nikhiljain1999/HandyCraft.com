@@ -6,9 +6,10 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom"
-import axios from "axios"
+import axios from "../../src/axios/instance"
+import {Grid} from "@material-ui/core"
 const getProduct = () => {
-    return axios.get('http://localhost:3001/product/randomproduct');
+    return axios.get('/product/randomproduct');
 }
 const getAndSet = async (setItem) => {
     const prod = await getProduct();
@@ -18,6 +19,7 @@ const randomize = async (setItem) => {
     getAndSet(setItem);
     setInterval(() => {
         getAndSet(setItem);
+        
     }, 5000)
 }
 
@@ -55,21 +57,41 @@ function AdCard({ }) {
         <Card name={item._id} key={item._id} className={classes.root}>
             <CardActionArea>
                 <CardContent >
+                    <Grid>
+                    <Grid style={{display:"flex", flexDirection:"row"}}>
+                <Typography gutterBottom variant="h5" component="h2">
+                <img src={item.image} style={{width:"250px" ,height:"250px"}}/>
+                </Typography>
+                <Grid style={{display:"flex", flexDirection:"column", marginLeft: "8px",}}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {item.title && item.title.length>30 ? item.title.slice(0,30)+"..." : item.title}
+                  
+                        {item.title && item.title.length>33 ? item.title.slice(0,33)+"..." : item.title}
                     </Typography>
-                    <br></br>
-                    <Typography variant="body2" component="h4" variant="h6">
-                        <strong> Product Description:</strong>{item.Description && item.Description.length>20? item.Description.slice(0,100)+"...":item.Description}
-                    </Typography>
-                    <br></br>
-                    <br></br>
+                    
+                   
                     <Typography variant="body2" component="p" variant="h6"  >
-                        <strong>Price:</strong>{item.price}₹
+                        <strong style={{color:"red"}}>{item.price}₹</strong>
+                    </Typography>
+                    (Extra {item.offer}% off)
+                  
+                    <Typography variant="body2" component="h4" variant="h6">
+                    <br/>
+                         Product Type:<strong style={{color:"green"}}>{item.producttype}</strong>
                     </Typography>
                     <Typography variant="body2" component="h4" variant="h6">
-                        <strong> Product Type:</strong>{item.producttype}
+                    <br/>
+                         Likes:<strong style={{color:"red"}}>{item.like}</strong>
                     </Typography>
+                    </Grid>
+                    </Grid>
+                    </Grid>
+                    <br></br>
+                    {/* <Typography variant="body2" component="h4" variant="h6">
+                        <strong> Product Description:</strong>{item.Description && item.Description.length>20? item.Description.slice(0,100)+"...":item.Description}
+                    </Typography> */}
+                    <br></br>
+                    <br></br>
+                    
                 </CardContent>
             </CardActionArea>
             <CardActions>

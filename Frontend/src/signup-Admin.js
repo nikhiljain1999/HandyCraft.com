@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import logo from "./assets/logo.png"
 import "./Login.css"
-import {NavLink,Link,useHistory} from "react-router-dom"
-import axios from 'axios'
+import {Link,useHistory} from "react-router-dom"
+import axios from '../src/axios/instance'
 function AdminSignup() {
     const history =useHistory()
     const [name,setName]=useState('')
@@ -14,7 +14,7 @@ function AdminSignup() {
     const [errors,setErrors]=useState({})
     const register =e=>{
         e.preventDefault()
-        axios.post('http://localhost:3001/admin',{
+        axios.post('/admin',{
             name,
             email,
             password,
@@ -43,9 +43,9 @@ function AdminSignup() {
                 <h5>Name</h5>
                     <input type="text" value={name} onChange={e=>setName(e.target.value)}/>
                     {errors.name && <h4 style={{color: 'red'}}>{errors.name.message}</h4>}
-                    <h5>E-mail</h5>
-                    <input type="text" value={email} onChange={e=>setEmail(e.target.value)}/>
-                    {errors.email && <h4 style={{color: 'red'}}>{errors.email.message}</h4>}
+                   <h5>E-mail</h5>
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                    {(errors.email ) && <h4 style={{color: 'red'}}>{errors.email}{errors.email.message}</h4>}
                     <h5>Password</h5>
                     <input type="password" value={password} onChange={e=>setPassword(e.target.value)}/>
                     {errors.password && <h4 style={{color: 'red'}}>{errors.password.message}</h4>}

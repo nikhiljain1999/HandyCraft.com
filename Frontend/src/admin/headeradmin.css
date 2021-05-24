@@ -1,14 +1,18 @@
 .header_admin{
-    height: 120px;
+    height: 80px;
     display: flex;
     text-align: center;
     align-items: center;
-    background-color:#1a2638;
+    background-color:#279698;
     position: sticky;
-    justify-content: center;
     top: 0;
     z-index: 100;
 }
 .text_align{
+    margin-left :80px;
+    color:white;
+}
+.icon_align{
+    margin-left :200px;
     color:white;
 }

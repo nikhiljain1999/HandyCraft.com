@@ -2,7 +2,8 @@
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color:lightgoldenrodyellow;
+    margin-left: 20px;
+    /* background-color:lightgoldenrodyellow; */
 }
 .checkoutProduct_info{
     padding-left: 20px;
@@ -25,8 +26,12 @@
     display: flex;
 }
 .checkoutProduct_title{
-    font-size: 17px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 30px;
+    cursor: pointer;
+    color:rgb(21, 35, 165);
+    
 }
 .checkoutProduct_des{
     font-size: 15px;

@@ -3,7 +3,7 @@ import logo from "./assets/logo.png"
 import "./Login.css"
 import {Link,useHistory} from "react-router-dom"
 
-import axios from 'axios'
+import axios from '../src/axios/instance'
 function Login() {
     const history =useHistory()
     const [email,setEmail]=useState('');
@@ -12,7 +12,7 @@ function Login() {
    
     const signIn=(e)=>{
         e.preventDefault()
-        axios.post('http://localhost:3001/admin/login',{
+        axios.post('/admin/login',{
             email,
             password
         })
@@ -33,7 +33,7 @@ function Login() {
             </Link>
             <div className="login_container">
                 <h1>Sign-in</h1>
-                {error && <h4 style={{ color: "red" }}>{error}</h4>}
+                {error && <h4 style={{ color: "red" }}>invalid credentials</h4>}
                 <form>
                     <h5>E-mail</h5>
                     <input type="text" value={email} onChange={e=>setEmail(e.target.value)}/>

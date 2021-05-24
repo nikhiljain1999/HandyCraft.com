@@ -1,156 +1,30 @@
 import React ,{useState,useEffect}from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import { Grid, Typography, } from "@material-ui/core"
-import { red } from '@material-ui/core/colors';
-import axios from 'axios'
-import robo from "../assets/robo.jpg"
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: '80%',
-    marginTop:'7%',
-    marginLeft:'10%',
-    minHeight: '80%',
-    marginBottom: '7%',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-bullet: {
-    display: 'inline-block',
-    color: 'white',
-    transform: 'scale(0.8)',
-},
-title: {
-    fontSize: 40,
-    color: 'white',
-    align: 'center'
-},
-p: {
-    frontSize: 20
-},
-pos: {
-    marginBottom: 12,
-    color: 'white',
-},
-col: {
-    display: 'flex',
-    flexDirection: "row"
-},
-rowStyles: {
-    display: "flex",
-    flexDirection: "column",
-    marginLeft:"40px"
-    
-}
-}
-));
-let config = {
+import axios from '../../src/axios/instance'
+import Profile from "./profile" 
+import Header from "../Header"
+import Footer from "../footer"
+export default function RecipeReviewCard(props) { 
+  let config = {
     headers: {
       "Authorization": `Bearer ${localStorage.getItem('token')}`,
     }
   }
-  
-
-export default function RecipeReviewCard() {
-    
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('');
-  const [age, setage] = useState('');
-  const [phone,setPhone]=useState('');
-  const[createdAt,setCreated]=useState('');
-  const [errors, setErrors] = useState({})
+  const [profile, setProfile] = useState({})
   useEffect(() => {
-    axios.get(`http://localhost:3001/users/getprofile`, config)
+    axios.get(`/users/getprofile`, config)
       .then(resp =>{ 
-  console.log(resp.data)
-    setName(resp.data[0].name)
-    console.log(resp.data[0].phone)
-    setCreated(resp.data[0].createdAt)
-    setEmail(resp.data[0].email)
-    setPhone(resp.data[0].phone)
-    setage(resp.data[0].age)
-    console.log(setCreated)
+  // console.log(resp.data[0])
+     setProfile(resp.data[0])
+     console.log(profile)
     })
       .catch(error => console.log(error))
 
   }, []);
   return (
-    <Card className={classes.root}>
-       <CardContent>
-                <Grid className={classes.col}>
-                <Grid className={classes.rowStyles} item >
-                <CardActionArea>
-                <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-           {name[0]}
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            
-          </IconButton>
-        }
-        title={name}
-        subheader={createdAt}
-      />
-       <CardMedia
-          
-          style={{height:'300%' ,width:'90%'}}
-          image={robo}
-          title="Your Profile"
-        />
-        </CardActionArea>
-        
-            </Grid>
-                    <Grid className={classes.rowStyles} item >
-                        <Typography ><CardContent >
-                        <Typography variant="body2" color="textSecondary" component="p" style={{ fontSize:'30px' ,marginTop:'30%'}}>
-                         <strong>Name :</strong>{name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p" style={{ fontSize:'20px'}}>
-                         <strong>Email :</strong>{email}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p" style={{ fontSize:'30px'}}>
-                         <strong>Phone :</strong>{phone}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p" style={{ fontSize:'30px'}}>
-                         <strong>Age :</strong>{age}
-                        </Typography>
-                      </CardContent>
-                    </Typography>
-                    </Grid>
-                    
-                </Grid>
-               
-                
-                
-
-            </CardContent>
-    </Card>
+    <div>
+      <Header/>
+        <Profile name={profile.name} email={profile.email} phone={profile.phone} age={profile.age} createdAt={profile.createdAt}/>
+    <Footer/>
+    </div>
   );
 }

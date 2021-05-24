@@ -8,12 +8,19 @@ import logo from "./assets/logo.png"
 import "./Header.css"
 import { useHistory } from "react-router-dom"
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import { confirmAlert } from 'react-confirm-alert'; // Import
+import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import axios from "axios"
+import Pin from "./pincode"
+// import {ConformAlert}
 function Header() {
     const [search, setSearch] = useState('')
     const history = useHistory()
     const[{basket},dispatch]=useStateValue();
+    const[city,setCity]=useState('')
+    const[area,setArea]=useState('')
     let config = {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem('token')}`,
@@ -41,8 +48,9 @@ const searchoption=()=>{
                 label: 'Yes',
                 style:{color:'Red'},
                 onClick: () =>{
+                    history.push('/login')
                     localStorage.removeItem('token')
-                    window.location.reload(false);
+                    // window.location.reload(false);
                   }
               },
               {
@@ -53,24 +61,27 @@ const searchoption=()=>{
           });
        
     }
+
     return (
         
         <div className="header">
+          
             <Link to="/" style={{textDecoration:"none"}}>
             <img className="header_logo"
                 src={logo} />
             </Link>
-            <div className="header_nav">                           
+          
+            <div className="header_nav"> 
+            <Pin/>                
                 </div>
-            <div className="header_search">
-           
+               
+                   
+            <div className="header_search">          
                 <input className="header_searchInput"
-                    type="text"  placeholder="What are you looking for?" value={search} onChange={e =>setSearch(e.target.value)} />
-              
-               
-               <SearchIcone className="header_searchIcon"  onClick={searchoption}/>
-               
-            </div>                        
+                    type="text"  placeholder="What are you looking for?" value={search} onChange={e =>setSearch(e.target.value)} />                             
+               <SearchIcone className="header_searchIcon"  onClick={searchoption}/>               
+            </div>
+                                
             <div className="header_nav">                
             { config.headers.Authorization==='Bearer null' ?(
                 <Link to="/login" style={{textDecoration:"none"}}>
@@ -83,13 +94,10 @@ const searchoption=()=>{
                 ):(
                    
                 <div onClick={()=>logout()} style={{cursor: 'pointer'}}>  
-                 <Link to="/" style={{textDecoration:"none"}}>
                 <div  className="header_option">  
                 <span className="header_optionLineOne"  >Logout</span>
-                <span className="header_optionLineTwo">Account</span>  
-                
+                <span className="header_optionLineTwo">Account</span>                 
                 </div>  
-                </Link>
                 </div> 
                 )}
             </div>
@@ -106,31 +114,23 @@ const searchoption=()=>{
                     <AccountBoxIcon  style={{ fontSize:"45px" }}/>
                     </div>  
                     </Link> 
-                    )}
-            
-           
-                
-              
+                    )}                             
             <Link to="/loginAdmin" style={{textDecoration:"none"}} >
             <div className="header_option">                
                 <span className="header_optionLineOne">Login as</span>
                 <span className="header_optionLineTwo">Admin</span>   
             </div>
-            </Link>
-           
+            </Link>          
             <Link to ="/checkout" style={{textDecoration:"none"}}>
             <div className="header_optionBasket">
                     <ShoppingCartIcon />
                     <span className="header_optionLineTwo header_basketCount">   
-                    {basket?.length}</span>
-                    
+                    {basket?.length}</span>                   
             </div>
-            </Link>
-            
-        </div>
+            </Link>            
 
-       
-    )
+  </div> )    
+    
 }
 
 export default Header
