@@ -8,10 +8,18 @@ function Subtotal() {
     const [{ basket }, { price }, dispatch] = useStateValue();
     console.log(basket)
     const history = useHistory()
+    let config = {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        }
+      }
     const checkout=()=>{
-        if(basket.length>0){
+        if(config.headers.Authorization === 'Bearer null'){
+            alert("Login first to checkout") 
+            history.push('/login')
+        }
+        else if(basket.length>0 ){
         history.push('/orderplaced')
-        window.location.reload(true );
         }
         else{
             alert("Please add product first")

@@ -41,8 +41,9 @@ function Adminupdateproduct() {
               stock,
               offer
         
-            }, config).then(
-              
+            }, config).then(resp=>
+              console.log(resp.data),
+              window.location.reload()
             )}
           },
           {

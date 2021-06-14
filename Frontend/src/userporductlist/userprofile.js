@@ -23,6 +23,7 @@ export default function RecipeReviewCard(props) {
   return (
     <div>
       <Header/>
+    
         <Profile name={profile.name} email={profile.email} phone={profile.phone} age={profile.age} createdAt={profile.createdAt}/>
     <Footer/>
     </div>

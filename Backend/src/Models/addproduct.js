@@ -29,7 +29,8 @@ const ProductSchema = new mongoose.Schema({
     dislike: {
         type: Number,
         default: 0
-    }, comments: [{
+    },
+     comments: [{
         type: mongoose.Types.ObjectId,
         ref: 'Comment'
     }],

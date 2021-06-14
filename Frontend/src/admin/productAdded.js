@@ -25,7 +25,6 @@ function AddedItems() {
   return (
     
     <div>
-      <AdminHeader/>
       <Productcollaps items={items}/>
     </div>
   )
